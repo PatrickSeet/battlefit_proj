@@ -16,7 +16,8 @@ urlpatterns = patterns('',
     url(r'^new_body_fat/$', 'battlefit_app.views.new_body_fat', name='new_body_fat'),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'battlefit_app.views.home', name='home'),
+    url(r'^$', 'battlefit_app.views.index', name='index'),
+    url(r'^home/$', 'battlefit_app.views.home', name='home'),
 
     # register log in and out
     url(r'^register/$', 'battlefit_app.views.register', name='register'),

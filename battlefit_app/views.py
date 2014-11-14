@@ -1,11 +1,12 @@
 import json
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 import operator
-from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, render_to_response
 from django.views.decorators.csrf import csrf_exempt
-from battlefit_app.forms import GroupForm, EmailUserCreationForm
+from battlefit_app.forms import GroupForm, UserCreationForm
 from battlefit_app.models import Group, Member, Data
 
 
@@ -91,7 +92,7 @@ def group(request, group_id):
                 if d.calories_burned is not None:
                     member_dataset.append(d.calories_burned)
                     member_data.append(d.calories_burned)
-            member_avg = sum(member_dataset)/len(member_dataset)
+            member_avg = 12 #sum(member_dataset)/len(member_dataset)
             mem_score = (goal - member_avg) / goal
             scores.append(mem_score)
             member_score[member.username] = mem_score
@@ -117,7 +118,7 @@ def group(request, group_id):
                 else:
                     pass
 
-            member_avg = sum(member_dataset)/len(member_dataset)
+            member_avg = 13 #sum(member_dataset)/len(member_dataset)
             mem_score = (goal - member_avg) / goal
             scores.append(mem_score)
             member_score[member.username] = mem_score
@@ -127,6 +128,7 @@ def group(request, group_id):
                 data_group.append(datum.body_fat)
             else:
                 pass
+        # if len(group_data) == 0
         score = sum(data_group)/len(data_group)
         scores.append(score)
         members = group.member.all()
@@ -139,7 +141,7 @@ def group(request, group_id):
                     member_dataset.append(d.body_fat)
                 else:
                     pass
-            mem_score = sum(member_dataset)/len(member_dataset)
+            mem_score = 50 #sum(member_dataset)/len(member_dataset)
             scores.append(mem_score)
             member_score[member.username] = mem_score
     group_avg = sum(scores)/len(scores)
@@ -157,26 +159,48 @@ def group(request, group_id):
 
     return render(request, "group.html", data)
 
+def index(request):
+    return render(request, "landing.html")
 
+@login_required
 def home(request):
-    return render_to_response("home.html")
-
+    return render(request, "home.html")
 
 def register(request):
     if request.method == 'POST':
-        form = EmailUserCreationForm(request.POST, request.FILES)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            username = request.POST['username']
-            password = request.POST['password1']
             form.save()
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect("profile")
+            user = form.save()
+            # user.email_user("Welcome!", "Thank you for signing up for our website.")
+            # text_content = 'Thank you for signing up for our website, {}'.format(user.username)
+            # html_content = '<h2>Thanks {} {}for signing up!</h2> <div>I hope you enjoy using our site</div><div>Signed up on {}'.format(
+            #     user.first_name, user.last_name, user.date_joined)
+            # msg = EmailMultiAlternatives("Welcome!", text_content, settings.DEFAULT_FROM_EMAIL, [user.email])
+            # msg.attach_alternative(html_content, "text/html")
+            # msg.send()
+            return redirect("/profile")
     else:
-        form = EmailUserCreationForm()
-    return render(request, "registration/register.html", {'form': form})
+        form = UserCreationForm()
+
+    return render(request, "registration/register.html", {
+        'form': form,
+    })
+# def register(request):
+#     if request.method == 'POST':
+#         form = EmailUserCreationForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             username = request.POST['username']
+#             password = request.POST['password1']
+#             form.save()
+#             user = authenticate(username=username, password=password)
+#             if user is not None:
+#                 if user.is_active:
+#                     login(request, user)
+#                     return redirect("profile")
+#     else:
+#         form = EmailUserCreationForm()
+#     return render(request, "registration/register.html", {'form': form})
 
 
 @login_required

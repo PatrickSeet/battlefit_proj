@@ -37,11 +37,11 @@ class Group(models.Model):
         (FITNESS, 'Fitness'),
     )
     category = models.CharField(max_length=1, choices=CATEGORY_CHOICES, default='W')
-    group_name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     start_date = models.DateField()
     end_date = models.DateField()
     goal = models.FloatField(null=True, blank=True)
-    group_member = models.ManyToManyField(Member, related_name='member')
+    member = models.ManyToManyField(Member, related_name='member')
 
     def __unicode__(self):
         return u"{}".format(self.name)

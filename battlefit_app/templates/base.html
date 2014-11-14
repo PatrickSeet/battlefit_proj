@@ -18,7 +18,7 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>#}
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -46,10 +46,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="{% url 'home' %}"><strong>Battle-Fit</strong></a></li>
-
+            <li class="active"><a href="#"><strong>Battle-Fit</strong></a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="{% url 'create_group' %}">Create group</a></li>
-
             <li><a href="{% url 'user_dashboard' %}">My Dashboard</a></li>
 
 {##}

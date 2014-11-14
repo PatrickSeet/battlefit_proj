@@ -4,7 +4,7 @@ from django.forms import ModelForm
 from battlefit_app.models import Member, GroupAdmin, Group, Data
 
 
-class EmailUserCreationForm(UserCreationForm):
+class UserCreationForm(UserCreationForm):
 
     class Meta:
         model = Member
@@ -25,13 +25,6 @@ class EmailUserCreationForm(UserCreationForm):
 
 
 class GroupForm(ModelForm):
-    # category = forms.CharField()
-    # name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
-    # start_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'text_box'}))
-    # end_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'text_box'}))
-    # goal = forms.FloatField(widget=forms.TextInput(attrs={'class': 'text_box'}))
-    pass
-
     class Meta:
         model = Group
 
