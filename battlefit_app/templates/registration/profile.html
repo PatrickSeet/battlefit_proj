@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}           {% endblock title %}
+{% block extra_head %}      {% endblock extra_head %}
+
+{% block content %}
+
+    <p><br /></p><p><br /></p><p><br /></p>
+    <div class="row">
+
+    <img class="img-circle" style="width: 120px;" src="{{ user.pic.url }}"/>
+    <h1>hi {{ user.username }}</h1>
+
+    <p> the last time you were here was {{ user.last_lgoin }} </p>
+
+    <p>Your email address is {{ user.email }}</p>
+
+    joined at {{ user.date_joined }} <br><br>
+
+
+    </div>
+
+
+
+
+{% endblock content %}
+
+{% block foot %}
+
+{% endblock foot %}

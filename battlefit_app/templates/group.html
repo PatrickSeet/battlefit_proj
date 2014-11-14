@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="row">
+<h1>{{ group.name }}</h1>
+<hr>
+<h3><span class="label label-default">Group:</span>
+<span class="label label-primary">{{ group.get_category_display }}</span></h3>
+
+<h4>
+    <span class="label label-default">Competition starts:</span>
+    <span class="label label-primary">{{ group.start_date }}</span>
+</h4>
+<h4>
+    <span class="label label-default">Competition ends:</span>
+    <span class="label label-primary">{{ group.end_date }}</span>
+</h4>
+<h4>
+    <span class="label label-default">Group Goal:</span>
+    <span class="label label-primary">{{ group.goal }}</span>
+</h4>
+<h4>
+    <span class="label label-default">Members:</span>
+    {% for member in group.member.all %}
+    <span class="label label-primary">{{ member.username }}</span>
+    {% endfor %}
+</h4>
+
+
+{#    {% for member in group.member.all %}#}
+{#    {{ member.username }} <br>#}
+{#    {% endfor %}<br>#}
+
+<h4>
+    <span class="label label-default">Your Score:</span>
+    <span class="label label-danger">{{ score | floatformat:3}}</span>
+</h4>
+<h4>
+    <span class="label label-default">Group average:</span>
+    <span class="label label-danger">{{ group_avg | floatformat:3}}</span>
+</h4>
+<h4>
+    <span class="label label-default">Best performing member:</span>
+    <span class="label label-danger">{{ winner_name }}</span>
+</h4>
+<h4>
+    <span class="label label-default">Best performing Score:</span>
+    <span class="label label-danger">{{ winner_score | floatformat:3}}</span>
+</h4>
+
+<hr>
+
+
+</div>
+{% endblock %}

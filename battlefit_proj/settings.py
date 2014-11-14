@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'battlefit_app',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -66,6 +67,9 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
+LOGIN_REDIRECT_URL = '/profile'
+LOGIN_URL = 'login'
+
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -76,11 +80,17 @@ USE_L10N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL = 'battlefit_app.Member'
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
+# https://docs.djangoproject.com/en/1.7/howto/media-files/
 
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, "static", *MEDIA_URL.strip("/").split("/"))
 
 try:
     from local_settings import *

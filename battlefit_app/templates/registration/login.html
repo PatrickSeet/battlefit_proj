@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}           {% endblock title %}
+{% block extra_head %}      {% endblock extra_head %}
+
+{% block content %}
+    <div class="row">
+    <div id="login" class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+        <form method="post" action="." class="form-signin" role="form">
+            {% csrf_token %}
+
+            <table width="100%" border="0" cellspacing="5" cellpadding="5">
+                {% for field in form %}
+
+                       <tr><td style="padding: 5px;" width="90" align="right" valign="top">{{ field.label_tag }}</td>
+                       <td align="left" valign="top"><span style="padding-left: 10px;">{{ field }}</span></td></tr>
+
+                {% endfor %}
+            </table>
+
+
+        <br>
+
+
+        <input class="btn btn-primary" role="button" type="submit" value="Log in">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Not member? <a href="{% url 'register' %}" class="btn btn-default" role="button">Register</a>
+
+        </form>
+    </div>
+    </div>
+
+{% endblock content %}
+
+{% block foot %}
+
+{% endblock foot %}

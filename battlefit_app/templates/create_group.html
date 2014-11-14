@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p><br></p>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input id="btn_submit" class="btn btn-primary" type="submit" value="Submit">
+
+{#            <div class="row form_label">#}
+{#  <div class="col-xs-3 col-sm-6 col-md-6" align="right">Category {{ form.category }}</div>#}
+{#  <div class="col-xs-9 col-md-6"></div>#}
+{#</div>#}
+{#       <div class="row form_label">#}
+{#  <div class="col-xs-3 col-sm-6 col-md-6" align="right">Group name {{ form.name }}</div>#}
+{#  <div class="col-xs-9 col-md-6"></div>#}
+{#</div>#}
+{#     <div class="row form_label">#}
+{#  <div class="col-xs-3 col-sm-6 col-md-6" align="right">Start date {{ form.start_date }}</div>#}
+{#  <div class="col-xs-9 col-md-6"></div>#}
+{#</div>#}
+{#      <div class="row form_label">#}
+{#  <div class="col-xs-3 col-sm-6 col-md-6" align="right">End date {{ form.end_date }}</div>#}
+{#  <div class="col-xs-9 col-md-6"></div>#}
+{#</div>#}
+{#      <div class="row form_label">#}
+{#  <div class="col-xs-3 col-sm-6 col-md-6" align="right">Goal {{ form.goal }}</div>#}
+{#  <div class="col-xs-9 col-md-6"></div>#}
+{#</div>#}
+{#    <div class="row form_label">#}
+{#  <div class="col-xs-3 col-sm-6 col-md-6" align="right"><input id="btn_submit" class="btn btn-primary" type="submit" value="Submit">#}
+{#</div>#}
+{#  <div class="col-xs-9 col-md-6"></div>#}
+{#</div>#}
+
+
+        </form>
+
+{% endblock %}
