@@ -6,26 +6,27 @@ $(document).ready(function () {
     });
 
 
-//    var vendpoint = "https://api.validic.com/v1/organizations/51aca5a06dedda916400002b/weight.json?access_token=ENTERPRISE_KEY&start_date=2014-04-01";
+    var vendpoint = "https://api.validic.com/v1/organizations/51aca5a06dedda916400002b/weight.json?access_token=ENTERPRISE_KEY&start_date=2014-04-01";
 //Enterprise bulk data: Weight
     var user_ids = [];
     var user_data = [];
     var user_pk = $('#user_pk').html();
     var user_key = ["", "538c9054f1f70eb3a3000006", "526bafa36dedda5bff000001", "5427156884626bc6b3000001", "53611913f1f70ef82c0000e7", "53fcf61484626bf9d8000006"];
     $('.import_userData').on('click', function() {
-//            $.ajax({
-//            url: vendpoint,
-//            type: "GET",
-//            dataType: "json",
-//            success: function(data){
+            $.ajax({
+            url: vendpoint,
+            type: "GET",
+            dataType: "json",
+            success: function(data){
 //                user_id = data.weight[user_pk].user_id;
-        user_id = user_key[user_pk];
-        console.log(user_id);
+//        user_id = user_key[user_pk];
+                user_id = data.weight[0].user_id;
+            console.log(data.weight[0].user_id);
                 get_user_calories_consume(user_id);
                 get_user_calories_burned(user_id);
                 get_user_body_fat(user_id);
-//            }
-//        });
+            }
+        });
 
         function get_user_calories_consume(user_id) {
             //get calories consumed data of specific user
