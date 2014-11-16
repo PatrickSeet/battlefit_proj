@@ -56,3 +56,4 @@ target/
 local_settings.py
 staticfiles
 *.pyc
+env_vars/
