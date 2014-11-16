@@ -1,0 +1,9 @@
+---
+
+db_name: "battlefit"
+
+db_user: "battle_user"
+db_password: B@ttleF1t
+nginx_server_name: "ec2-54-148-140-204.us-west-2.compute.amazonaws.com"
+
+django_settings_file: battlefit_proj.settings
