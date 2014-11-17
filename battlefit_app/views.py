@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from battlefit_app.forms import GroupForm, UserCreationForm
 from battlefit_app.models import Group, Member, Data
 
+
 @login_required
 def load_group(request):
 
@@ -82,7 +83,7 @@ def group(request, group_id):
     member = Member.objects.get(id=request.user.id)
     bmr = member.get_bmr()
     goal = (group.goal / 100) * bmr
-    print data
+
     if group.category == 'W':
         for datum in data:
             if datum.calories_burned is not None:
