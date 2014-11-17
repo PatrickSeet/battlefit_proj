@@ -124,25 +124,9 @@ $(document).ready(function () {
         }
 
     });
-    $("#show_weight_loss").hide();
-    $("#show_fitness").hide();
-    $('input[type="radio"]').click(function(){
-        if($(this).attr("value")=="show_health"){
-            $("#show_weight_loss").hide();
-            $("#show_fitness").hide();
-            $("#show_health").show();
-        }
-        if($(this).attr("value")=="show_weight_loss"){
-            $("#show_health").hide();
-            $("#show_fitness").hide();
-            $("#show_weight_loss").show();
-        }
-        if($(this).attr("value")=="show_fitness"){
-            $("#show_weight_loss").hide();
-            $("#show_health").hide();
-            $("#show_fitness").show();
-        }
-    });
+
+    $("#show_fitness").show();
+
 
 
 });

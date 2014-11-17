@@ -5,47 +5,14 @@
 {% block extra_head %}      {% endblock extra_head %}
 
 {% block content %}
-    <div class="row">
 
-    <!--  modal -->
-      <div class="modal fade bs-example-modal-loser" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-              <div class="modal-header">
-{#                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>#}
-                <h4 class="modal-title" id="myModalLabel">Winner !</h4>
-              </div>
-              <div class="modal-body" align="center">
-                <img style="width: 200px; border: 10px solid #aaa;" class="img-circle" src="{% static 'img/modal_winner.gif' %}"/>
-              </div>
-              <div class="modal-footer" align="center">
-                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
-              </div>
-        </div>
-      </div>
-    </div>
+    <div class="container" style="margin-top: 150px;">
+    <div class="row row-centered">
 
 
-    <div class="modal fade bs-example-modal-winner" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-              <div class="modal-header">
-{#                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>#}
-                <h4 class="modal-title" id="myModalLabel">you LOSER !</h4>
-              </div>
-              <div class="modal-body" align="center">
-                <img style="width: 200px; border: 10px solid #aaa;" class="img-circle" src="{% static 'img/modal_loser3.gif' %}"/>
-              </div>
-              <div class="modal-footer" align="center">
-                <button type="button" class="btn btn-default" data-dismiss="modal">okay</button>
-              </div>
-        </div>
-      </div>
-    </div>
 
-  <!--  modal end -->
 
-    <div id="login" class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+    <div id="login" class="col-xs-6 col-centered col-fixed">
         <form method="post" action="." class="form-signin" role="form">
             {% csrf_token %}
 
@@ -68,20 +35,20 @@
 
         </form>
     </div>
-    </div>
-    <hr>
-    <!--  test modal  -->
+
+
+
     <!-- Loser modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-loser">Loser modal</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-loser">Winner modal</button>
 
 
     <!-- Winner modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-winner">Winner modal</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-winner">Loser modal</button>
 
 
 
-
-
+    </div>
+</div>
 
 {% endblock content %}
 

@@ -18,6 +18,7 @@
 #sm_profile {
     margin-top: 11px;
     padding-right: 15px;
+    padding-left: 35px;
 }
 
 #sm_profile_img {
@@ -72,10 +73,52 @@
 }
 
 .back_trans {
-    background:rgba(255,255,255, 0.6);
+    background:rgba(255,255,255, 0.3);
 }
 .user_window {
     padding: 5%;
     border-radius: 10px;
 
+}
+
+.frame-square {
+  background: #888;
+  border: 0px solid #fff;
+  display: inline-block;
+  vertical-align: top;
+  padding: 10px;
+  width: 200px;
+  height: 200px;
+  margin-right: .5em;
+  margin-bottom: .3em;
+}
+
+.frame-round {
+  @extend .frame-square;
+  border-radius: 50%;
+  overflow: hidden;
+
+  .crop {border-radius: 50%;}
+}
+
+.crop {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+    margin: auto;
+    position: absolute;
+    top: -100%;
+    right: -100%;
+    bottom: -100%;
+    left: -100%;
+  }
+}
+
+input {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
