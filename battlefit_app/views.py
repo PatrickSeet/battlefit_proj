@@ -9,6 +9,15 @@ from django.views.decorators.csrf import csrf_exempt
 from battlefit_app.forms import GroupForm, UserCreationForm
 from battlefit_app.models import Group, Member, Data
 
+@login_required
+def load_group(request):
+
+    groups = Group.objects.all()
+
+    data = {'groups': groups}
+
+    return render(request, "user_dashboard.html", data)
+
 
 @login_required
 def create_group(request):
