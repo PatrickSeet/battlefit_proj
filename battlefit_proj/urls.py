@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^new_calories_consume/$', 'battlefit_app.views.new_calories_consume', name='new_calories_consume'),
     url(r'^new_calories_burned/$', 'battlefit_app.views.new_calories_burned', name='new_calories_burned'),
     url(r'^new_body_fat/$', 'battlefit_app.views.new_body_fat', name='new_body_fat'),
+    url(r'^fetch_routine/$', 'battlefit_app.cron.fetch_routine', name='fetch_routine'),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'battlefit_app.views.index', name='index'),
