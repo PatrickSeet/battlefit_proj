@@ -11,6 +11,16 @@ from battlefit_app.models import Group, Member, Data
 
 
 @login_required
+def load_group(request):
+
+    groups = Group.objects.all()
+
+    data = {'groups': groups}
+
+    return render(request, "user_dashboard.html", data)
+
+
+@login_required
 def create_group(request):
     if request.method == "POST":
         form = GroupForm(request.POST)
@@ -73,7 +83,7 @@ def group(request, group_id):
     member = Member.objects.get(id=request.user.id)
     bmr = member.get_bmr()
     goal = (group.goal / 100) * bmr
-    print data
+
     if group.category == 'W':
         for datum in data:
             if datum.calories_burned is not None:
