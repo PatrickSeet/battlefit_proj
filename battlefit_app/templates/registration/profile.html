@@ -6,11 +6,12 @@
 
 {% block content %}
 
-    <p><br /></p><p><br /></p><p><br /></p>
-    <div class="container">
-    <div class="row">
 
+    <div class="container" style="margin-top: 100px;">
+    <div class="row">
+    <div class="col-md-8 col-md-offset-2">
     <img class="img-circle" style="width: 120px;" src="{{ user.pic.url }}"/>
+        <br><br>
     <h1>hi {{ user.username }}</h1>
 
     <p> the last time you were here was {{ user.last_lgoin }} </p>
@@ -21,7 +22,7 @@
 
 
     </div>
-</div>
+</div></div>
 
 
 
