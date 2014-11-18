@@ -30,7 +30,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,11 +48,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
-
-CRONJOBS = [
-    ('* * * * *', 'battlefit_app.cron.fetch_routine'),
-    ('* * * * * sleep 30;', 'battlefit_app.cron.fetch_routine')
-]
 
 ROOT_URLCONF = 'battlefit_proj.urls'
 
