@@ -1,0 +1,32 @@
+{% load staticfiles %}
+
+
+<div style="margin: 30px;" class="modal fade bs-example-modal-loser" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+              <div align="center" class="modal-header">
+{#                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>#}
+
+                  <h2 class="modal-title" id="myModalLabel">
+                      <span style="font-size: 12px;" class="glyphicon glyphicon-star"></span>
+                      <span style="font-size: 12px;" class="glyphicon glyphicon-star"></span>
+                      <span style="font-size: 12px;" class="glyphicon glyphicon-star"></span>
+                      Winner
+                      <span style="font-size: 12px;" class="glyphicon glyphicon-star"></span>
+                      <span style="font-size: 12px;" class="glyphicon glyphicon-star"></span>
+                      <span style="font-size: 12px;" class="glyphicon glyphicon-star"></span></h2>
+
+                  You are the winner of 'this' group.
+
+              </div>
+              <div class="modal-body frame-round" align="center">
+                <div class="crop">
+                <img class="img-circle" src="{% static 'img/yes_modal.gif' %}"/>
+                </div>
+              </div>
+              <div class="modal-footer" align="center">
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal">Yes</button>
+              </div>
+        </div>
+      </div>
+</div>

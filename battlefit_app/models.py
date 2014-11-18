@@ -15,6 +15,8 @@ class Member(AbstractUser):
     )
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='F')
     age = models.IntegerField(null=True, blank=True)
+    vid = models.CharField(max_length=100, null=True, blank=True)
+    wincount = models.IntegerField(null=True, blank=True)
 
     def __unicode__(self):
         return unicode(self.username)
