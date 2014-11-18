@@ -31,7 +31,7 @@
 {#                </table>#}
 {#            {% endfor %}#}
 {#        </div>#}
-        <div class="user_window back_trans"> <!--  class="user_window back_trans" -->
+        <div class="back_trans"> <!--  class="user_window back_trans" -->
             <img id="bg_profile_image" class="img-circle" src="{{ user.pic.url }}"/><br>
             <div class="user_window">
                 <table>
@@ -119,26 +119,28 @@
 {#=======#}
     <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 group_table" align="center">
 
-        <button class="btn btn-warning import_test">Synchronize Devices</button><br><br>
 
 
 
-        <table class="table user_window back_trans" id="show_fitness">
-            <caption>Name of the group</caption>
+        <div class="table_bkgd back_trans" style="padding: 15px;">
+        <table class="table" id="show_fitness">
+            <button class="btn btn-warning import_test">Name of the Group Sync</button>
+            <br><br>
             <thead>
                 <tr>
-                    <th><span style="color: #00bff3;" class="glyphicon glyphicon-user"> </span> Username </th>
-                    <th><span style="color: #39b54a;" class="glyphicon glyphicon-phone"> </span> Device </th>
-                    <th><span style="color: #f26522;" class="glyphicon glyphicon-fire"> </span> Calories Burned </th>
+                    <th><span style="color: #00bff3; font-size: 20px;" class="glyphicon glyphicon-user"> </span><br> Username </th>
+                    <th><span style="color: #39b54a; font-size: 20px;" class="glyphicon glyphicon-phone"> </span><br> Device </th>
+                    <th><span style="color: #f26522; font-size: 20px;" class="glyphicon glyphicon-fire"> </span><br>Calories Burned </th>
                 </tr>
             </thead>
 
 
-            <tbody id="calories_burned">
+            <tbody id="calories_burned" align="center" valign="middle">
 
 
             </tbody>
         </table>
+        </div>
     </div>
 {#<<<<<<< HEAD#}
 {#    <!-- jQuery -->#}
