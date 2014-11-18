@@ -1,0 +1,21 @@
+{% load staticfiles %}
+
+
+<div style="margin: 30px;" class="modal fade bs-example-modal-winner" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+              <div class="modal-header">
+{#                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>#}
+                <h4 class="modal-title" id="myModalLabel">you LOSER !</h4>
+              </div>
+              <div class="modal-body frame-round" align="center">
+                <div class="crop">
+                <img class="img-circle" src="{% static 'img/modal_loser3.gif' %}"/>
+                </div>
+              </div>
+              <div class="modal-footer" align="center">
+                <button type="button" class="btn btn-warning btn-lg btn-block" data-dismiss="modal">whatever</button>
+              </div>
+        </div>
+      </div>
+</div>

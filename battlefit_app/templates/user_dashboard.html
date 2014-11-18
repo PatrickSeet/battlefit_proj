@@ -2,36 +2,43 @@
 {% load staticfiles %}
 
 {% block extra_head %}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="{% static "js/index.js" %}"></script>
-{% endblock %}
+
+{% endblock extra_head %}
 
 {% block content %}
-    <br>
-    <br>
 
-    <div class="col-lg-4 col-md-4 col-sm-7 col-xs-12" align="center">
-        <div style="margin-bottom: 30px;" class="user_window back_trans" align="center">
-            <h4 style="border-bottom: 2px solid darkgrey;"> Your Groups </h4>
-            {% for key, value in group_data.items %}
-                <table>
-                    <tbody>
-                        <tr>
-                            <td style="padding: 10px;"><a href="/group/{{ key.id }}">{{ key.name }}</a></td>
-                            <td style="padding: 10px;"><h2 class="label label-success" style="font-size: 24px;"><img style="width: 60px; height: 60px;" src="https://cdn0.iconfinder.com/data/icons/gamification/512/cup_gold-512.png"/> {{ value | floatformat:3 }}</h2></td>
-                        </tr>
-                    </tbody>
-                </table>
-            {% endfor %}
-        </div>
-        <div class="user_window back_trans">
+    <div class="container" style="margin-top: 150px;">
+    <div class="row">
+
+{#    <div class="col-lg-8 col-lg-offset-2">#}
+{#        <img id="bg_profile_image" class="img-circle" src="{{ user.pic.url }}"/>#}
+{#    </div>#}
+{#    <div class="col-lg-2"></div>#}
+
+
+
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" align="center" style="padding-bottom: 20px;">
+{#        <div style="margin-bottom: 30px;" class="user_window back_trans" align="center">#}
+{#            <h4 style="border-bottom: 2px solid darkgrey;"> Your Groups </h4>#}
+{#            {% for key, value in group_data.items %}#}
+{#                <table>#}
+{#                    <tbody>#}
+{#                        <tr>#}
+{#                            <td style="padding: 10px;"><a href="/group/{{ key.id }}">{{ key.name }}</a></td>#}
+{#                            <td style="padding: 10px;"><h2 class="label label-success" style="fonts-size: 24px;"><img style="width: 60px; height: 60px;" src="https://cdn0.iconfinder.com/data/icons/gamification/512/cup_gold-512.png"/> {{ value | floatformat:3 }}</h2></td>#}
+{#                        </tr>#}
+{#                    </tbody>#}
+{#                </table>#}
+{#            {% endfor %}#}
+{#        </div>#}
+        <div class="user_window back_trans"> <!--  class="user_window back_trans" -->
             <img id="bg_profile_image" class="img-circle" src="{{ user.pic.url }}"/><br>
             <div class="user_window">
                 <table>
                     <tbody>
                         <tr>
                             <td style="padding: 10px;">User Name</td>
-                            <td style="padding: 10px;"><b>{{ user.username }}</b></td>
+                            <td style="padding: 10px;">{{ user.username }}</td>
                         </tr>
                         <tr>
                             <td style="padding: 10px;">Real Name</td>
@@ -53,84 +60,36 @@
                             <td style="padding: 10px;">Weight</td>
                             <td style="padding: 10px;"><b>{{ user.weight }}</b></td>
                         </tr>
-                        <tr>
-                            <td style="padding: 10px;">Score</td>
-                            <td style="padding: 10px;"><b>{{ user.score }}</b></td>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12" align="center">
-        <button class="btn btn-warning import_userData">Synchronize Devices</button><br><br>
+    <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 group_table" align="center">
 
-        <input type="radio" name="group1" value="show_health" checked> Show Health
-        <input type="radio" name="group1" value="show_weight_loss">  Show Weight Loss
-        <input type="radio" name="group1" value="show_fitness">  Show Fitness<br><br>
-{#        health data - calories consume#}
-        <table class="table user_window back_trans" id="show_health">
-            <thead>
-                <tr>
-                    <td>Date</td>
-                    <td>Time</td>
-                    <td>Food</td>
-                    <td>Calories Consume</td>
-                </tr>
-            </thead>
-            <tbody>
-                {% for consume in calories_consume %}
-                <tr>
-                    <td>{{ consume.date }}</td>
-                    <td>{{ consume.time }}</td>
-                    <td>{{ consume.activity_title }}</td>
-                    <td>{{ consume.calories_consumed }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-{#        health data - calories burned#}
-        <table class="table user_window back_trans"  id="show_weight_loss">
-            <thead>
-                <tr>
-                    <td>Date</td>
-                    <td>Time</td>
-                    <td>Activity</td>
-                    <td>Calories Burned</td>
-                </tr>
-            </thead>
-            <tbody>
-                {% for burned in calories_burned %}
-                <tr>
-                    <td>{{ burned.date }}</td>
-                    <td>{{ burned.time }}</td>
-                    <td>{{ burned.activity_title }}</td>
-                    <td>{{ burned.calories_burned }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-{#        health data - body fat#}
+        <button class="btn btn-warning import_test">Synchronize Devices</button><br><br>
+
+
+
         <table class="table user_window back_trans" id="show_fitness">
+            <caption>Name of the group</caption>
             <thead>
                 <tr>
-                    <td>Date</td>
-                    <td>Time</td>
-                    <td>Body Fat (%)</td>
+                    <th><span style="color: #00bff3;" class="glyphicon glyphicon-user"> </span> Username </th>
+                    <th><span style="color: #39b54a;" class="glyphicon glyphicon-phone"> </span> Device </th>
+                    <th><span style="color: #f26522;" class="glyphicon glyphicon-fire"> </span> Calories Burned </th>
                 </tr>
             </thead>
-            <tbody>
-                {% for fat in body_fat %}
-                <tr>
-                    <td>{{ fat.date }}</td>
-                    <td>{{ fat.time }}</td>
-                    <td>{{ fat.body_fat }}</td>
-                </tr>
-                {% endfor %}
+
+
+            <tbody id="calories_burned">
+
+
             </tbody>
         </table>
     </div>
-
+</div></div>
 
 {% endblock content %}

@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^create/$', 'battlefit_app.views.create_group', name='create_group'),
     url(r'^group/(?P<group_id>\w+)/$', 'battlefit_app.views.group', name='group'),
+    url(r'^load_group/$', 'battlefit_app.views.load_group', name='load_group'),
     url(r'^user_dashboard/$', 'battlefit_app.views.user_dashboard', name='user_dashboard'),
     # ajax
     url(r'^new_calories_consume/$', 'battlefit_app.views.new_calories_consume', name='new_calories_consume'),
@@ -16,7 +17,8 @@ urlpatterns = patterns('',
     url(r'^new_body_fat/$', 'battlefit_app.views.new_body_fat', name='new_body_fat'),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'battlefit_app.views.home', name='home'),
+    url(r'^$', 'battlefit_app.views.index', name='index'),
+    url(r'^home/$', 'battlefit_app.views.home', name='home'),
 
     # register log in and out
     url(r'^register/$', 'battlefit_app.views.register', name='register'),
