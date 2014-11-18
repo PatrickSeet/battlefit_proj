@@ -3,15 +3,33 @@
 
 
 {% block content %}
-<p><br><br></p>
-<div class="jumbotron back_trans">
-        <h1>Welcome to BattleFit</h1>
-        <p>Socialize, compete, battle with your friends.
-            Who among you will win?
-            We keep track of everyone's progress from any wearable thanks to <strong>Validic</strong>.
-            Finally, you have a one-stop-shop for fun fitness motivation.
-            Join your group and get fit the fun way!</p>
-        <p><a href="{% url 'user_dashboard' %}" class="btn btn-primary btn-lg" role="button">Find your group »</a></p>
-</div>
+{#<p><br><br></p>#}
+{#<div class="jumbotron back_trans">#}
+{#        <h1>Welcome to BattleFit</h1>#}
+{#        <p>Socialize, compete, battle with your friends.#}
+{#            Who among you will win?#}
+{#            We keep track of everyone's progress from any wearable thanks to <strong>Validic</strong>.#}
+{#            Finally, you have a one-stop-shop for fun fitness motivation.#}
+{#            Join your group and get fit the fun way!</p>#}
+{#        <p><a href="{% url 'user_dashboard' %}" class="btn btn-primary btn-lg" role="button">Find your group »</a></p>#}
+{#</div>#}
+
+    <!-- Intro Header -->
+
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div align="right" class="col-md-8 col-md-offset-4">
+                        <h1 class="brand-heading">Battle-Fit</h1>
+                        <p style='font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 20px; margin-left: 150px;'>Socialize, compete, battle with your friends.<br>Join a group and get fit the fun way!</p>
+{#                        <a href="#about" class="btn btn-circle page-scroll">#}
+{#                            <i class="fa fa-angle-double-down animated"></i>#}
+{#                        </a>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
 {% endblock content %}
