@@ -182,13 +182,6 @@ def register(request):
         if form.is_valid():
             form.save()
             user = form.save()
-            # user.email_user("Welcome!", "Thank you for signing up for our website.")
-            # text_content = 'Thank you for signing up for our website, {}'.format(user.username)
-            # html_content = '<h2>Thanks {} {}for signing up!</h2> <div>I hope you enjoy using our site</div><div>Signed up on {}'.format(
-            #     user.first_name, user.last_name, user.date_joined)
-            # msg = EmailMultiAlternatives("Welcome!", text_content, settings.DEFAULT_FROM_EMAIL, [user.email])
-            # msg.attach_alternative(html_content, "text/html")
-            # msg.send()
             return redirect("/profile")
     else:
         form = UserCreationForm()
@@ -196,21 +189,6 @@ def register(request):
     return render(request, "registration/register.html", {
         'form': form,
     })
-# def register(request):
-#     if request.method == 'POST':
-#         form = EmailUserCreationForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             username = request.POST['username']
-#             password = request.POST['password1']
-#             form.save()
-#             user = authenticate(username=username, password=password)
-#             if user is not None:
-#                 if user.is_active:
-#                     login(request, user)
-#                     return redirect("profile")
-#     else:
-#         form = EmailUserCreationForm()
-#     return render(request, "registration/register.html", {'form': form})
 
 
 @login_required
@@ -262,44 +240,44 @@ def user_dashboard(request):
         'group_data' : group_data
     })
 
-
-@csrf_exempt
-def new_calories_consume(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        for i in data:
-            Data.objects.get_or_create(
-                calories_consumed = i['calories_consumed'],
-                date = i['date'],
-                activity_title = i['activity_title'],
-                activity_type = i['activity_type'],
-                member = request.user
-            )
-    return HttpResponse(content_type='application.json')
-
-
-@csrf_exempt
-def new_calories_burned(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        for i in data:
-            Data.objects.get_or_create(
-                calories_burned = i['calories_burned'],
-                date = i['date'],
-                activity_title = i['activity_title'],
-                activity_type = i['activity_type'],
-                member = request.user
-            )
-    return HttpResponse(content_type='application.json')
-
-@csrf_exempt
-def new_body_fat(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        Data.objects.get_or_create(
-            date = "2014-10-31T11:54:33+00:00",
-            activity_type = "fitness",
-            body_fat = data,
-            member = request.user)
-
-    return HttpResponse(content_type='application.json')
+#
+# @csrf_exempt
+# def new_calories_consume(request):
+#     if request.method == 'POST':
+#         data = json.loads(request.body)
+#         for i in data:
+#             Data.objects.get_or_create(
+#                 calories_consumed = i['calories_consumed'],
+#                 date = i['date'],
+#                 activity_title = i['activity_title'],
+#                 activity_type = i['activity_type'],
+#                 member = request.user
+#             )
+#     return HttpResponse(content_type='application.json')
+#
+#
+# @csrf_exempt
+# def new_calories_burned(request):
+#     if request.method == 'POST':
+#         data = json.loads(request.body)
+#         for i in data:
+#             Data.objects.get_or_create(
+#                 calories_burned = i['calories_burned'],
+#                 date = i['date'],
+#                 activity_title = i['activity_title'],
+#                 activity_type = i['activity_type'],
+#                 member = request.user
+#             )
+#     return HttpResponse(content_type='application.json')
+#
+# @csrf_exempt
+# def new_body_fat(request):
+#     if request.method == 'POST':
+#         data = json.loads(request.body)
+#         Data.objects.get_or_create(
+#             date = "2014-10-31T11:54:33+00:00",
+#             activity_type = "fitness",
+#             body_fat = data,
+#             member = request.user)
+#
+#     return HttpResponse(content_type='application.json')

@@ -15,7 +15,7 @@ $(document).ready(function () {
 
     //OrgEndPoint retrieve all users in org, from routine object
     var orgEndPoint = "https://api.validic.com/v1/organizations/541cfdd5965fe2d683000187/routine.json?access_token=e6404d1cbaa268dcc4c53fac190f97be831d9d987af97aeeab6561702aa65033";
-
+    var jeffEndPoint = "https://api.validic.com/v1/fitness.json?authentication_token=5n7T9btWJ_kCbDxA9jsc";
 
     //For Jeff, no views needed, just match up the button id on click, match up the table or div id where u want to populate it
     //retrieve our data from Validic based on Organizaion ID
@@ -27,45 +27,26 @@ $(document).ready(function () {
             success: function(response){
                 var result = response.routine;
                 for( var i=0;i<result.length;i++){
-
-                    //$('#calories_burned').append("<tr><td>" + result[i].source_name + " " + result[i].calories_burned + "</td></tr>");
                     if (result[i].user_id == pat_id){
-                        console.log("Pat: steps taken: " + result[i].steps + " Device: " + result[i].source_name + " Calories burned: " + result[i].calories_burned)
+
+                        console.log("Pat's " + result[i].source_name + " " + result[i].calories_burned)
                     }
                     else if (result[i].user_id == julian_id){
-                        console.log("Julian: steps taken: " + result[i].steps + " Device: " + result[i].source_name + " Calories burned: " + result[i].calories_burned)
+                        console.log("Julian's " + result[i].source_name + " " + result[i].calories_burned)
                     }
-                    else if (result[i].user_id == jeff_id){
-                        console.log("Jeff: steps taken: " + result[i].steps + " Device: " + result[i].source_name + " Calories burned: " + result[i].calories_burned)
-                    }
-
                 }
             }
         });
+            $.ajax({
+            url: jeffEndPoint,
+            type: "GET",
+            dataType: "json",
+            success: function(response){
 
+                        console.log("Jeff's " + response.fitness[0].source_name + " " + response.fitness[0].calories)
+
+            }
+        });
     });
-
-
-
-    $("#show_weight_loss").hide();
-    $("#show_fitness").hide();
-    $('input[type="radio"]').click(function(){
-        if($(this).attr("value")=="show_health"){
-            $("#show_weight_loss").hide();
-            $("#show_fitness").hide();
-            $("#show_health").show();
-        }
-        if($(this).attr("value")=="show_weight_loss"){
-            $("#show_health").hide();
-            $("#show_fitness").hide();
-            $("#show_weight_loss").show();
-        }
-        if($(this).attr("value")=="show_fitness"){
-            $("#show_weight_loss").hide();
-            $("#show_health").hide();
-            $("#show_fitness").show();
-        }
-    });
-
-
+     $("#show_fitness").show();
 });
