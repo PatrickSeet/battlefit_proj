@@ -16,9 +16,12 @@
 }
 
 #sm_profile {
-    margin-top: 11px;
+    margin-top: -4px;
     padding-right: 15px;
-    padding-left: 35px;
+    /*padding-left: 5px;*/
+}
+#profile_padding {
+    padding-right: 30px;
 }
 
 #sm_profile_img {
@@ -33,8 +36,8 @@
 }
 
 .text_box {
-   width: 240px;
-   height: 30px;
+   width: 100%;
+   height: 50px;
    border: solid 1px #DDDDDD;
    padding: 22px;
    border-radius: 1px;
@@ -42,7 +45,7 @@
    background-color: #FFFFFF;
    outline: none;
    color: #474747;
-   margin: 20px;
+   /*margin: 20px;*/
   }
 .text_box:hover  {
    border: 1px solid #FF9500;
@@ -57,8 +60,9 @@
 
 .form_label {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #777;
-    font-size: 24px;
+    color: #ccc;
+    font-size: 18px;
+    padding-top: 15px;
 }
 
 #newProfile {
@@ -68,11 +72,13 @@
 }
 
 #upfile1 {
-    width: 30px;
+    width: 35px;
     cursor: pointer;
+    margin-right: 15px;
 }
 
 .back_trans {
+    padding-top: 20px;
     background:rgba(25,25,25, 0.5);
 }
 .user_window {
@@ -97,7 +103,6 @@
   @extend .frame-square;
   border-radius: 50%;
   overflow: hidden;
-
   .crop {border-radius: 50%;}
 }
 
@@ -131,6 +136,10 @@ input {
 #calories {
     padding-left: 50px;
     font-size: 24px;
-    padding-right: 50px;
+    /*padding-right: 50px;*/
     color: #f26522;
+}
+
+#btn_submit {
+    margin-top: 20px;
 }

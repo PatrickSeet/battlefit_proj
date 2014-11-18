@@ -5,6 +5,12 @@ from battlefit_app.models import Member, GroupAdmin, Group, Data
 
 
 class UserCreationForm(UserCreationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
 
     class Meta:
         model = Member
@@ -24,7 +30,22 @@ class UserCreationForm(UserCreationForm):
         )
 
 
-class GroupForm(ModelForm):
+class GroupForm(forms.Form):
+    WEIGHT_LOSS = 'W'
+    HEALTH = 'H'
+    FITNESS = 'F'
+    CATEGORY_CHOICES = (
+        (WEIGHT_LOSS, 'Weight Loss'),
+        (HEALTH, 'Health'),
+        (FITNESS, 'Fitness'),
+    )
+    category= forms.CharField(widget=forms.Select(choices=CATEGORY_CHOICES))
+    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+    start_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+    end_date = forms.DateField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+    goal = forms.FloatField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+    member = forms.ModelMultipleChoiceField(queryset=Member.objects.all())
+
     class Meta:
         model = Group
 
@@ -39,13 +60,13 @@ class DataForm(ModelForm):
         model = Data
 
 
-class MemberForm(ModelForm):
+class MemberForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
-    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'textb0x'}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'textb0x'}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'textb0x'}))
+    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
 
     class Meta:
         model = Member

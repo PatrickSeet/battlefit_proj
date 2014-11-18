@@ -55,10 +55,10 @@
 
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'create_group' %}">Create group</a></li>
-                <li><a href="{% url 'user_dashboard' %}">My Dashboard</a></li>
+                <li id="profile_padding"><a href="{% url 'user_dashboard' %}">My Dashboard</a></li>
 
                 {% if user.is_authenticated %}
-                <li id="sm_profile"><img id="sm_profile_img" class="img-circle" src="{{ user.pic.url }}"/> {{ user.username }} </li>
+                <li id="sm_profile"><a href="{% url 'profile' %}"><img id="sm_profile_img" class="img-circle" src="{{ user.pic.url }}"/>{{ user.username }}</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
                 <li><a href="{% url 'register' %}">Register</a></li>
