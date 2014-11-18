@@ -4,17 +4,18 @@ from django.forms import ModelForm
 from battlefit_app.models import Member, GroupAdmin, Group, Data
 
 
-class UserCreationForm(UserCreationForm):
+class UserForm(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
     email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'text_box'}))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
+    pic = forms.ImageField(required=False)
 
     class Meta:
         model = Member
-        fields = ("username", "first_name", "last_name", "email", "password1", "password2")
+        fields = ("pic", "username", "first_name", "last_name", "email", "password1", "password2")
 
     def clean_username(self):
         # Since User.username is unique, this check is redundant,
@@ -67,6 +68,7 @@ class MemberForm(forms.Form):
     email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'text_box'}))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
+    pic = forms.ImageField(required=False)
 
     class Meta:
         model = Member

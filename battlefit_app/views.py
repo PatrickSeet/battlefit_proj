@@ -6,7 +6,7 @@ import operator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, render_to_response
 from django.views.decorators.csrf import csrf_exempt
-from battlefit_app.forms import GroupForm, UserCreationForm
+from battlefit_app.forms import GroupForm, UserCreationForm, UserForm
 from battlefit_app.models import Group, Member, Data
 
 
@@ -31,6 +31,7 @@ def create_group(request):
         form = GroupForm()
     data = {'form': form}
     return render(request, "create_group.html", data)
+
 
 def group_overview(member):
     groups = Group.objects.filter(member=member)
@@ -176,12 +177,18 @@ def index(request):
 def home(request):
     return render(request, "home.html")
 
+
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserForm(request.POST, request.FILES)
         if form.is_valid():
+            username = request.POST["username"]
+            password = request.POST["password1"]
             form.save()
-            user = form.save()
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
             # user.email_user("Welcome!", "Thank you for signing up for our website.")
             # text_content = 'Thank you for signing up for our website, {}'.format(user.username)
             # html_content = '<h2>Thanks {} {}for signing up!</h2> <div>I hope you enjoy using our site</div><div>Signed up on {}'.format(
@@ -189,9 +196,9 @@ def register(request):
             # msg = EmailMultiAlternatives("Welcome!", text_content, settings.DEFAULT_FROM_EMAIL, [user.email])
             # msg.attach_alternative(html_content, "text/html")
             # msg.send()
-            return redirect("/profile")
+                    return redirect("/profile")
     else:
-        form = UserCreationForm()
+        form = UserForm()
 
     return render(request, "registration/register.html", {
         'form': form,
