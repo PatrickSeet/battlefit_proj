@@ -68,13 +68,13 @@ def group_overview(member):
                     pass
             score = sum(data_group)/len(data_group)
         group_scores[group] = score
-        print group_scores
+        print "group scores in overview line 71: " + group_scores
     return group_scores
 
 @login_required
 def group(request, group_id):
     group = Group.objects.get(id=group_id)
-    print group
+    print "group in group line 77: {}".format(group)
     data = Data.objects.filter(member = request.user, date__range=[group.start_date, group.end_date])
     member_data = []
     data_group = []
@@ -90,7 +90,8 @@ def group(request, group_id):
                 data_group.append(datum.calories_burned)
             else:
                 pass
-        print data_group
+        print "group data in line 93 {}".format(data_group)
+        #failed because len(data_group) == 0, there are no W gropus in db
         data_w = sum(data_group)/len(data_group)
         score = (goal - data_w) / goal
         scores.append(score)
@@ -155,7 +156,7 @@ def group(request, group_id):
             scores.append(mem_score)
             member_score[member.username] = mem_score
     group_avg = sum(scores)/len(scores)
-    print scores
+    print "scores in group line 159: {}".format(scores)
     sorted_scores = sorted(member_score.items(), key=operator.itemgetter(1))
     sorted_scores.reverse()
     winner = sorted_scores[0]
@@ -229,7 +230,7 @@ def user_dashboard(request):
 
     try:
         group_data = group_overview(request.user)
-        print group_data
+        print "group data in user_dashboard: {}".format(group_data)
     except:
         group_data = {}
 
