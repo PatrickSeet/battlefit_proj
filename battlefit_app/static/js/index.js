@@ -28,15 +28,15 @@ $(document).ready(function () {
                 var result = response.routine;
                 for( var i=0;i<result.length;i++){
 
-                    //$('#calories_burned').append("<tr><td>" + result[i].source_name + " " + result[i].calories_burned + "</td></tr>");
+//                    $('#calories_burned').append("<tr><td>" + " " + result[i].user_id + " " + result[i].source_name + " " + result[i].calories_burned + "</td></tr>");
                     if (result[i].user_id == pat_id){
-                        console.log("Pat: steps taken: " + result[i].steps + " Device: " + result[i].source_name + " Calories burned: " + result[i].calories_burned)
+                        $('#calories_burned').append("<tr><td>Pat</td>" + "<td align='center' valign='middle'><span id='device'>" + result[i].source_name + "</span></td><td><span id='calories'>" + result[i].calories_burned + "</span></td></tr>")
                     }
                     else if (result[i].user_id == julian_id){
-                        console.log("Julian: steps taken: " + result[i].steps + " Device: " + result[i].source_name + " Calories burned: " + result[i].calories_burned)
+                        $('#calories_burned').append("<tr><td>Julian</td>" + "<td align='center' valign='middle'><span id='device'>" + result[i].source_name + "</span></td><td><span id='calories'>" + result[i].calories_burned + "</span></td></tr>")
                     }
                     else if (result[i].user_id == jeff_id){
-                        console.log("Jeff: steps taken: " + result[i].steps + " Device: " + result[i].source_name + " Calories burned: " + result[i].calories_burned)
+                        $('#calories_burned').append("<tr><td>Jeff</td>"  + "<td align='center' valign='middle'><span id='device'>" + result[i].source_name + "</span></td><td><span id='calories'>" + result[i].calories_burned + "</span></td></tr>")
                     }
 
                 }
