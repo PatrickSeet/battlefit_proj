@@ -6,41 +6,81 @@
 
 {% block content %}
 
+    <div class="container" style="padding-top: 100px;">
+    <div class="row">
+    <div class="col-md-8 col-md-offset-2">
 
+        Register
 
         <form method="post" action="." enctype="multipart/form-data" >
             {% csrf_token %}
 
-            <div class="row"><div class="col-lg-3 col-md-4"></div>
-            <div class="col-lg-6 col-md-4" id="textlabel" align="right">Username {{ form.username }}</div>
-            <div class="col-lg-3 col-md-4"></div></div><br>
-        <div class="row"><div class="col-lg-3 col-md-4"></div>
-            <div class="col-lg-6 col-md-4" id="textlabel" align="right">First name {{ form.first_name }}</div>
-            <div class="col-lg-3 col-md-4"></div></div><br>
-        <div class="row"><div class="col-lg-3 col-md-4"></div>
-            <div class="col-lg-6 col-md-4" id="textlabel" align="right">Last name {{ form.last_name }}</div>
-            <div class="col-lg-3 col-md-4"></div></div><br>
-        <div class="row"><div class="col-lg-3 col-md-4"></div>
-            <div class="col-lg-6 col-md-4" id="textlabel" align="right">Email {{ form.email }}</div>
-            <div class="col-lg-3 col-md-4"></div></div><br>
-        <div class="row"><div class="col-lg-3 col-md-4"></div>
-            <div class="col-lg-6 col-md-4" id="textlabel" align="right">Password {{ form.password1 }}</div>
-            <div class="col-lg-3 col-md-4"></div></div><br>
-        <div class="row"><div class="col-lg-3 col-md-4"></div>
-            <div class="col-lg-6 col-md-4" id="textlabel" align="right">Confirm Password {{ form.password2 }}</div>
-            <div class="col-lg-3 col-md-4"> </div></div><br>
-        <div class="row"><div class="col-lg-3 col-md-4"></div>
-            <div class="col-lg-6 col-md-4" id="textlabel" align="right">Click icon to upload new profile photo </div>
-            <div class="col-lg-3 col-md-4" id="newProfile" ><img class="img-circle" src="/media/profile_img/default.png" id="upfile1" style="cursor:pointer" />
-            <input type="file" id="file1" name="file1" style="display:none" /></div></div>
+            <div class="col-lg-7">
+                <img class="img-circle" src="/media/profile_img/default.png" id="upfile1" style="cursor:pointer" />
+                    <label class="form_label"> upload profile photo</label>
+                <input type="file" id="file1" name="file1" style="display:none" />
+            </div>
 
-        <div class="row"><div class="col-lg-3 col-md-4"></div>
-            <div class="col-lg-6 col-md-4" id="textlabel" align="right"><input id="btn_submit" class="btn btn-default btn-lg" type="submit" value="Submit"></div>
-            <div class="col-lg-3 col-md-4"></div></div>
+            <div class="col-lg-7">
+                <label class="form_label">username</label>
+                <div id="textlabel">{{ form.username }}</div>
+            </div>
+            <div class="col-lg-7">
+                <label class="form_label">first name</label>
+                <div id="textlabel">{{ form.first_name }}</div>
+            </div>
+            <div class="col-lg-7">
+                <label class="form_label">last name</label>
+                <div id="textlabel">{{ form.last_name }}</div>
+            </div>
+            <div class="col-lg-7">
+                <label class="form_label">email</label>
+                <div id="textlabel">{{ form.email }}</div>
+            </div>
+            <div class="col-lg-7">
+                <label class="form_label">password</label>
+                <div id="textlabel">{{ form.password1 }}</div>
+            </div>
+            <div class="col-lg-7">
+                <label class="form_label">confirm password</label>
+                <div id="textlabel">{{ form.password2 }}</div>
+            </div>
+
+            <div class="col-lg-7">
+                <input id="btn_submit" class="btn btn-default btn-lg btn-block" type="submit" value="Submit">
+            </div>
+
+{#            <div class="row"><div class="col-lg-3 col-md-4"></div>#}
+{#            <div class="col-lg-6 col-md-4" id="textlabel" align="right">Username {{ form.username }}</div>#}
+{#            <div class="col-lg-3 col-md-4"></div></div><br>#}
+{#        <div class="row"><div class="col-lg-3 col-md-4"></div>#}
+{#            <div class="col-lg-6 col-md-4" id="textlabel" align="right">First name {{ form.first_name }}</div>#}
+{#            <div class="col-lg-3 col-md-4"></div></div><br>#}
+{#        <div class="row"><div class="col-lg-3 col-md-4"></div>#}
+{#            <div class="col-lg-6 col-md-4" id="textlabel" align="right">Last name {{ form.last_name }}</div>#}
+{#            <div class="col-lg-3 col-md-4"></div></div><br>#}
+{#        <div class="row"><div class="col-lg-3 col-md-4"></div>#}
+{#            <div class="col-lg-6 col-md-4" id="textlabel" align="right">Email {{ form.email }}</div>#}
+{#            <div class="col-lg-3 col-md-4"></div></div><br>#}
+{#        <div class="row"><div class="col-lg-3 col-md-4"></div>#}
+{#            <div class="col-lg-6 col-md-4" id="textlabel" align="right">Password {{ form.password1 }}</div>#}
+{#            <div class="col-lg-3 col-md-4"></div></div><br>#}
+{#        <div class="row"><div class="col-lg-3 col-md-4"></div>#}
+{#            <div class="col-lg-6 col-md-4" id="textlabel" align="right">Confirm Password {{ form.password2 }}</div>#}
+{#            <div class="col-lg-3 col-md-4"> </div></div><br>#}
+{#        <div class="row"><div class="col-lg-3 col-md-4"></div>#}
+{#            <div class="col-lg-6 col-md-4" id="textlabel" align="right">Click icon to upload new profile photo </div>#}
+{#            <div class="col-lg-3 col-md-4" id="newProfile" ><img class="img-circle" src="/media/profile_img/default.png" id="upfile1" style="cursor:pointer" />#}
+{#            <input type="file" id="file1" name="file1" style="display:none" /></div></div>#}
+{##}
+{#        <div class="row"><div class="col-lg-3 col-md-4"></div>#}
+{#            <div class="col-lg-6 col-md-4" id="textlabel" align="right"><input id="btn_submit" class="btn btn-default btn-lg btn-block" type="submit" value="Submit"></div>#}
+{#            <div class="col-lg-3 col-md-4"></div></div>#}
 
 
     </form>
 
+    </div></div></div>
 
 {% endblock content %}
 
