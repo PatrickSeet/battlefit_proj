@@ -70,3 +70,24 @@ class MemberForm(forms.Form):
 
     class Meta:
         model = Member
+
+# class LoginForm(forms.Form):
+#     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+#     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
+#
+#     class Meta:
+#         model = Member
+#         fields = ["username", "password1"]
+#
+#     def clean_username(self):
+#         # Check for existing username
+#         username = self.cleaned_data["username"]
+#         try:
+#             Member.objects.get(username=username)
+#         except Member.DoesExist:
+#             return username
+#         raise forms.ValidationError(
+#             self.error_messages['username_does_not_exist'],
+#             code='username_does_not_exist',
+#         )
+

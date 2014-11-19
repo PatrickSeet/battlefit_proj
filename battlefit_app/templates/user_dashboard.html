@@ -46,33 +46,38 @@
 {#            {% endfor %}#}
 {#        </div>#}
         <div class="back_trans"> <!--  class="user_window back_trans" -->
-            <img id="bg_profile_image" class="img-circle" src="{{ user.pic.url }}"/><br>
+            <img id="bg_profile_image" class="img-circle" src="http://ec2-54-148-140-204.us-west-2.compute.amazonaws.com/static/img/default.png"/><br>
             <div class="user_window">
                 <table>
                     <tbody>
                         <tr>
-                            <td style="padding: 10px;">User Name</td>
-                            <td style="padding: 10px;">{{ user.username }}</td>
+                            <td style="padding: 8px;">User Name</td>
+                            <td style="padding: 8px;">{{ user.username }}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 10px;">Real Name</td>
-                            <td style="padding: 10px;"><b>{{ user.first_name }} {{ user.last_name }}</b></td>
+                            <td style="padding: 8px;">Real Name</td>
+                            <td style="padding: 8px;"><b>{{ user.first_name }} {{ user.last_name }}</b></td>
+                        </tr>
+
+                        <tr>
+                            <td style="padding: 8px;">Age</td>
+                            <td style="padding: 8px;"><b>{{ user.age }}</b></td>
                         </tr>
                         <tr>
-                            <td style="padding: 10px;">Gender</td>
-                            <td style="padding: 10px;"><b>{{ user.gender }}</b></td>
+                            <td style="padding: 8px;">Height</td>
+                            <td style="padding: 8px;"><b>5' 10"</b></td>
                         </tr>
                         <tr>
-                            <td style="padding: 10px;">Age</td>
-                            <td style="padding: 10px;"><b>{{ user.age }}</b></td>
+                            <td style="padding: 8px;">Weight</td>
+                            <td style="padding: 8px;"><b>{{ user.weight }}</b></td>
                         </tr>
                         <tr>
-                            <td style="padding: 10px;">Height</td>
-                            <td style="padding: 10px;"><b>5' 10"</b></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px;">Weight</td>
-                            <td style="padding: 10px;"><b>{{ user.weight }}</b></td>
+                            <td style="padding: 8px;">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-loser">Winner</button>
+                            </td>
+                            <td style="padding: 8px;">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-winner">Loser</button>
+                            </td>
                         </tr>
 
                     </tbody>
