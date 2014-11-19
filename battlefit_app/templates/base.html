@@ -61,7 +61,7 @@
                 <li id="profile_padding"><a href="{% url 'user_dashboard' %}">My Dashboard</a></li>
 
                 {% if user.is_authenticated %}
-                <li id="sm_profile"><a href="{% url 'profile' %}"><img id="sm_profile_img" class="img-circle" src="http://ec2-54-148-140-204.us-west-2.compute.amazonaws.com/static/img/default.png"/>{{ user.username }}</a></li>
+                <li id="sm_profile"><a href="{% url 'profile' %}"><img id="sm_profile_img" class="img-circle" src="{{ user.image.url }}"/>{{ user.username }}</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
                 <li><a href="{% url 'register' %}">Register</a></li>

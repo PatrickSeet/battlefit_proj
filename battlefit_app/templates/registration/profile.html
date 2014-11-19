@@ -10,14 +10,25 @@
     <div class="container" style="margin-top: 100px;">
     <div class="row">
     <div class="col-md-5 col-md-offset-2">
-    <img class="img-circle" style="width: 120px;" src="http://ec2-54-148-140-204.us-west-2.compute.amazonaws.com/static/img/default.png"/>
+    <img class="img-circle" style="width: 120px;" src="{{ user.image.url }}"/>
         <br><br>
     <h1>hi {{ user.username }}</h1>
 
-    <p>Your email address is {{ user.email }}</p>
+    Your email address is {{ user.email }}<br>
 
-    joined at {{ user.date_joined }} <br>
+    joined at {{ user.date_joined }} <br><br>
 
+        <span id="disclaimer">
+        <strong style="color: #ddd;">Step 1:</strong> If you have not registered your device, click the "REGISTER YOUR DEVICE".<br>
+
+        <strong style="color: #ddd;">Step 2:</strong> A new browser window will pop up leading you to Validic's App Marketplace.
+            This is where you choose your device or app to grant Validic's access for your data.
+            Once you are connected, you can close the browser if you choose to.
+            The connection remains until you explicitly click the disconnect button.<br>
+
+        <strong style="color: #ddd;">Step 3:</strong> Back to Battlefit app, click "MY DASHBOARD", then click on "SYNC" button and results will show up.
+
+        </span>
 
     </div>
 
