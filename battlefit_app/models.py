@@ -17,6 +17,7 @@ class Member(AbstractUser):
     age = models.IntegerField(null=True, blank=True)
     vid = models.CharField(max_length=100, null=True, blank=True)
     wincount = models.IntegerField(null=True, blank=True)
+    vaccesstoken = models.CharField(max_length=100, null=True, blank=True)
 
     def __unicode__(self):
         return unicode(self.username)

@@ -11,8 +11,11 @@ urlpatterns = patterns('',
     url(r'^group/(?P<group_id>\w+)/$', 'battlefit_app.views.group', name='group'),
     url(r'^load_group/$', 'battlefit_app.views.load_group', name='load_group'),
     url(r'^user_dashboard/$', 'battlefit_app.views.user_dashboard', name='user_dashboard'),
-    # ajax
+    url(r'^validic_register/$', 'battlefit_app.views.validic_register', name='validic_register'),
+    url(r'^validic_save_info/$', 'battlefit_app.views.validic_save_info', name='validic_save_info'),
+    url(r'^validic_sync/$', 'battlefit_app.views.validic_sync', name='validic_sync'),
 
+    # ajax
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'battlefit_app.views.index', name='index'),
     url(r'^home/$', 'battlefit_app.views.home', name='home'),
@@ -20,7 +23,7 @@ urlpatterns = patterns('',
     # register log in and out
     url(r'^register/$', 'battlefit_app.views.register', name='register'),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout', name='logout'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login/'}, name='logout'),
     url(r'^profile/$', 'battlefit_app.views.profile', name='profile'),
 
     #password reset

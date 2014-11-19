@@ -1,6 +1,7 @@
 import json
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.sessions import serializers
 from django.http import HttpResponse
 import operator
 from django.contrib.auth.decorators import login_required
@@ -9,6 +10,33 @@ from django.views.decorators.csrf import csrf_exempt
 from battlefit_app.forms import GroupForm, UserCreationForm
 from battlefit_app.models import Group, Member, Data
 
+
+@login_required
+def validic_sync(request):
+
+    pass
+
+@login_required
+def validic_register(request):
+
+    # query db for the user id
+    # send user id to register.js to generate access_token
+    uid = Member.objects.get(username=request.user)
+    user_info = {}
+    user_info['uid'] = uid.id
+
+    return HttpResponse(json.dumps(user_info), content_type='application.json')
+
+@login_required
+@csrf_exempt
+def validic_save_info(request):
+
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        Member.objects.filter(username=request.user).update(vaccesstoken=data['user']['access_token'])
+        Member.objects.filter(username=request.user).update(vid=data['user']['_id'])
+
+    return HttpResponse("update ok")
 
 @login_required
 def load_group(request):
