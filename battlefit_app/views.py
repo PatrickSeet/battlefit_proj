@@ -7,7 +7,7 @@ import operator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, render_to_response
 from django.views.decorators.csrf import csrf_exempt
-from battlefit_app.forms import GroupForm, UserCreationForm
+from battlefit_app.forms import GroupForm, UserCreationForm, UserForm, MemberForm
 from battlefit_app.models import Group, Member, Data
 
 
@@ -201,23 +201,25 @@ def group(request, group_id):
 def index(request):
     return render(request, "landing.html")
 
-@login_required
 def home(request):
     return render(request, "home.html")
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST, request.FILES)
+        form = UserForm(request.POST, request.FILES)
         if form.is_valid():
+            username = request.POST["username"]
+            password = request.POST["password1"]
             form.save()
-            user = form.save()
-            return redirect("/profile")
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect("profile")
     else:
-        form = UserCreationForm()
-
-    return render(request, "registration/register.html", {
-        'form': form,
-    })
+        form = UserForm(request.POST, request.FILES)
+    data = {'form': form}
+    return render(request, "registration/register.html", data)
 
 
 @login_required

@@ -4,17 +4,18 @@ from django.forms import ModelForm
 from battlefit_app.models import Member, GroupAdmin, Group, Data
 
 
-class UserCreationForm(UserCreationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
-    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'text_box'}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
+class UserForm(UserCreationForm):
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}), required=False)
+    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}), required=False)
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}), required=False)
+    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'text_box'}), required=False)
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}), required=False)
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}), required=False)
+    image = forms.ImageField(required=False)
 
     class Meta:
         model = Member
-        fields = ("username", "first_name", "last_name", "email", "password1", "password2")
+        fields = ("image", "username", "first_name", "last_name", "email", "password1", "password2")
 
     def clean_username(self):
         # Since User.username is unique, this check is redundant,
@@ -60,16 +61,18 @@ class DataForm(ModelForm):
         model = Data
 
 
-class MemberForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
-    email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'text_box'}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
-
-    class Meta:
-        model = Member
+# class MemberForm(forms.Form):
+#     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+#     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+#     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+#     email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'text_box'}))
+#     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
+#     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'text_box'}))
+#     image = forms.ImageField(required=False)
+#
+#     class Meta:
+#         model = Member
+#         fields = ("image", "username", "first_name", "last_name", "email", "password1", "password2")
 
 # class LoginForm(forms.Form):
 #     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
@@ -91,3 +94,6 @@ class MemberForm(forms.Form):
 #             code='username_does_not_exist',
 #         )
 
+class MemberForm(ModelForm):
+    class Meta:
+        model = Member

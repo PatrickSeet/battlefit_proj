@@ -46,7 +46,7 @@
 {#            {% endfor %}#}
 {#        </div>#}
         <div class="back_trans"> <!--  class="user_window back_trans" -->
-            <img id="bg_profile_image" class="img-circle" src="http://ec2-54-148-140-204.us-west-2.compute.amazonaws.com/static/img/default.png"/><br>
+            <img id="bg_profile_image" class="img-circle" src="{{ user.image.url }}"/><br>
             <div class="user_window">
                 <table>
                     <tbody>
@@ -93,7 +93,7 @@
 
         <div class="table_bkgd back_trans" style="padding: 15px;">
         <table class="table" id="show_fitness">
-            <button class="btn btn-warning import_test">Name of the Group Sync</button>
+            <button class="btn btn-warning import_test">Group Sync</button>
             <br><br>
             <thead>
                 <tr>
