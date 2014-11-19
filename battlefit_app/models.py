@@ -13,7 +13,7 @@ class Member(AbstractUser):
         (FEMALE, 'Female'),
         (MALE, 'Male'),
     )
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True)
     vid = models.CharField(max_length=100, null=True, blank=True)
     wincount = models.IntegerField(null=True, blank=True)
