@@ -33,16 +33,17 @@ $(document).ready(function () {
             }
         });
 
-            $.ajax({
+        $.ajax({
             url: jeffEndPoint,
             type: "GET",
             dataType: "json",
             success: function(response){
-                       var new_calories = parseInt(response.fitness[0].calories);
-                        $('#calories_burned').append("<tr><td>Jeff</td>" + "<td align='center' valign='middle'><span id='device'>" + response.fitness[0].source_name + "</span></td><td><span id='calories'>" + new_calories + "</span></td></tr>")
-
-                }
-            });
+                var new_calories = parseInt(response.fitness[0].calories);
+                $('#calories_burned').append("<tr><td>Jeff</td>" + "<td align='center' valign='middle'><span id='device'>" + response.fitness[0].source_name + "</span></td><td><span id='calories'>" + new_calories + "</span></td></tr>")
+            }
+        });
+        //generate ajax
+        //could be different endpoint
     });
 
     $("#show_fitness").show();

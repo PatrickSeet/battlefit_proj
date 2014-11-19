@@ -29,7 +29,6 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function(response){
                     console.log(response);
-                    console.log(response.user.access_token);
                     var user_access_key = response.user.access_token;
                     //send response to django to save access_token
                     saveUserValidicInfo(response, user_access_key);
@@ -51,9 +50,7 @@ $(document).ready(function () {
                     //store access_token to postgres, build endpoint to app marketplace
 
                     var appmrketplace = "https://app.validic.com/" + org_id + "/" + uak;
-                    console.log(appmrketplace);
                     window.open(appmrketplace);
-
                     console.log(response);
                 },
                 error: function(response){
