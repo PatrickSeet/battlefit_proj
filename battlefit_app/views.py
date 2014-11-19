@@ -6,7 +6,7 @@ import operator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, render_to_response
 from django.views.decorators.csrf import csrf_exempt
-from battlefit_app.forms import GroupForm, UserCreationForm, UserForm
+from battlefit_app.forms import GroupForm, UserCreationForm
 from battlefit_app.models import Group, Member, Data
 
 
@@ -180,15 +180,10 @@ def home(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserForm(request.POST, request.FILES)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            username = request.POST["username"]
-            password = request.POST["password1"]
             form.save()
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
+            user = form.save()
             # user.email_user("Welcome!", "Thank you for signing up for our website.")
             # text_content = 'Thank you for signing up for our website, {}'.format(user.username)
             # html_content = '<h2>Thanks {} {}for signing up!</h2> <div>I hope you enjoy using our site</div><div>Signed up on {}'.format(
@@ -196,9 +191,9 @@ def register(request):
             # msg = EmailMultiAlternatives("Welcome!", text_content, settings.DEFAULT_FROM_EMAIL, [user.email])
             # msg.attach_alternative(html_content, "text/html")
             # msg.send()
-                    return redirect("/profile")
+            return redirect("/profile")
     else:
-        form = UserForm()
+        form = UserCreationForm()
 
     return render(request, "registration/register.html", {
         'form': form,
@@ -256,6 +251,9 @@ def user_dashboard(request):
             'body_fat': i.body_fat*100
         })
 
+    uid = Member.objects.get(username = request.user)
+    data = uid.id
+
     try:
         group_data = group_overview(request.user)
         print group_data
@@ -267,7 +265,7 @@ def user_dashboard(request):
         'calories_burned': calories_burned,
         'body_fat': body_fat,
         'group_data' : group_data
-    })
+    }, data)
 
 
 @csrf_exempt
@@ -312,6 +310,8 @@ def new_body_fat(request):
     return HttpResponse(content_type='application.json')
 
 
+# Fetch routine will be used in production when we want to
+# update the fitness stats on a regular interval
 @csrf_exempt
 def fetch_routine(request):
     if request.method == 'GET':

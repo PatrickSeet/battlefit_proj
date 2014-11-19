@@ -4,7 +4,7 @@ from django.forms import ModelForm
 from battlefit_app.models import Member, GroupAdmin, Group, Data
 
 
-class UserForm(UserCreationForm):
+class UserCreationForm(UserCreationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'text_box'}))

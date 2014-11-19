@@ -32,33 +32,38 @@
 {#            {% endfor %}#}
 {#        </div>#}
         <div class="back_trans"> <!--  class="user_window back_trans" -->
-            <img id="bg_profile_image" class="img-circle" src="{{ user.pic.url }}"/><br>
+            <img id="bg_profile_image" class="img-circle" src="http://ec2-54-148-140-204.us-west-2.compute.amazonaws.com/static/img/default.png"/><br>
             <div class="user_window">
                 <table>
                     <tbody>
                         <tr>
-                            <td style="padding: 10px;">User Name</td>
-                            <td style="padding: 10px;">{{ user.username }}</td>
+                            <td style="padding: 8px;">User Name</td>
+                            <td style="padding: 8px;">{{ user.username }}</td>
                         </tr>
                         <tr>
-                            <td style="padding: 10px;">Real Name</td>
-                            <td style="padding: 10px;"><b>{{ user.first_name }} {{ user.last_name }}</b></td>
+                            <td style="padding: 8px;">Real Name</td>
+                            <td style="padding: 8px;"><b>{{ user.first_name }} {{ user.last_name }}</b></td>
+                        </tr>
+
+                        <tr>
+                            <td style="padding: 8px;">Age</td>
+                            <td style="padding: 8px;"><b>{{ user.age }}</b></td>
                         </tr>
                         <tr>
-                            <td style="padding: 10px;">Gender</td>
-                            <td style="padding: 10px;"><b>{{ user.gender }}</b></td>
+                            <td style="padding: 8px;">Height</td>
+                            <td style="padding: 8px;"><b>5' 10"</b></td>
                         </tr>
                         <tr>
-                            <td style="padding: 10px;">Age</td>
-                            <td style="padding: 10px;"><b>{{ user.age }}</b></td>
+                            <td style="padding: 8px;">Weight</td>
+                            <td style="padding: 8px;"><b>{{ user.weight }}</b></td>
                         </tr>
                         <tr>
-                            <td style="padding: 10px;">Height</td>
-                            <td style="padding: 10px;"><b>5' 10"</b></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px;">Weight</td>
-                            <td style="padding: 10px;"><b>{{ user.weight }}</b></td>
+                            <td style="padding: 8px;">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-loser">Winner</button>
+                            </td>
+                            <td style="padding: 8px;">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-winner">Loser</button>
+                            </td>
                         </tr>
 
                     </tbody>
@@ -67,56 +72,6 @@
         </div>
     </div>
 
-{#<<<<<<< HEAD#}
-{#    <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12" align="center">#}
-{#        <button class="btn btn-warning import_userData">Synchronize Devices</button><br><br>#}
-{#        <input type="radio" name="group1" value="show_health" checked> Show Health#}
-{#        <input type="radio" name="group1" value="show_weight_loss">  Show Weight Loss#}
-{#        <input type="radio" name="group1" value="show_fitness">  Show Fitness<br><br>#}
-{#        health data - calories consume#}
-{#        <table class="table user_window back_trans" id="show_health">#}
-{#            <thead>#}
-{#                <tr>#}
-{#                    <td>Date</td>#}
-{#                    <td>Time</td>#}
-{#                    <td>Food</td>#}
-{#                    <td>Calories Consume</td>#}
-{#                </tr>#}
-{#            </thead>#}
-{#            <tbody>#}
-{#                {% for consume in calories_consume %}#}
-{#                <tr>#}
-{#                    <td>{{ consume.date }}</td>#}
-{#                    <td>{{ consume.time }}</td>#}
-{#                    <td>{{ consume.activity_title }}</td>#}
-{#                    <td>{{ consume.calories_consumed }}</td>#}
-{#                </tr>#}
-{#                {% endfor %}#}
-{#            </tbody>#}
-{#        </table>#}
-{#        health data - calories burned#}
-{#        <table class="table user_window back_trans"  id="show_weight_loss">#}
-{#            <thead>#}
-{#                <tr>#}
-{#                    <td>Date</td>#}
-{#                    <td>Time</td>#}
-{#                    <td>Activity</td>#}
-{#                    <td>Calories Burned</td>#}
-{#                </tr>#}
-{#            </thead>#}
-{#            <tbody>#}
-{#                {% for burned in calories_burned %}#}
-{#                <tr>#}
-{#                    <td>{{ burned.date }}</td>#}
-{#                    <td>{{ burned.time }}</td>#}
-{#                    <td>{{ burned.activity_title }}</td>#}
-{#                    <td>{{ burned.calories_burned }}</td>#}
-{#                </tr>#}
-{#                {% endfor %}#}
-{#            </tbody>#}
-{#        </table>#}
-{#        health data - body fat#}
-{#=======#}
     <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12 group_table" align="center">
 
 
@@ -142,12 +97,10 @@
         </table>
         </div>
     </div>
-{#<<<<<<< HEAD#}
-{#    <!-- jQuery -->#}
-{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>#}
-{#    <script src="{% static 'js/fetchRoutine.js'%}"></script>#}
-{##}
-{#=======#}
 </div></div>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static 'js/fetchRoutine.js'%}"></script>
 
 {% endblock content %}

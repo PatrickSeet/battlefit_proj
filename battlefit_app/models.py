@@ -6,7 +6,7 @@ class Member(AbstractUser):
     FEMALE = 'F'
     MALE = 'M'
     score = models.IntegerField(null=True, blank=True)
-    pic = models.ImageField(null=True, blank=True, upload_to='profile_img', default='profile_img/default.png')
+    pic = models.ImageField(null=True, blank=True, upload_to='profile_img', default='http://www.jngland.com/battlefit/default.png')
     weight = models.FloatField(null=True, blank=True)
     height = models.IntegerField(null=True, blank=True)
     GENDER_CHOICES = (
