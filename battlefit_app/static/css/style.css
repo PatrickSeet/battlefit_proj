@@ -157,4 +157,24 @@ input {
     color: #204d74;
 }
 
+.about_block {
+  background:rgba(25,25,25, 0.5);
+  padding: 15px;
+  margin: 5px;
+}
+
+#our_profile {
+    padding-top: 25px;
+}
+
+#bf_logo {
+    margin-top: 10px;
+    margin-left: 15px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 20px;
+}
+#bf_logo > img {
+    width: 40px;
+    margin-right: 10px;
+}
 

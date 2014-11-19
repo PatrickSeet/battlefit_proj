@@ -45,9 +45,11 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#">
-                    <i class="fa fa-play-circle"></i>  <span class="light">start</span> <strong>Battle.Fit</strong>
-                </a>
+                <div id="bf_logo" class="page-scroll">
+{#                    <i class="fa fa-play-circle"></i>  #}
+                    <img src="{% static 'img/battle_fit_new_logo.png' %}"/>
+                    <span><strong>Battle.Fit</strong></span>
+                </div>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -59,7 +61,7 @@
                 <li id="profile_padding"><a href="{% url 'user_dashboard' %}">My Dashboard</a></li>
 
                 {% if user.is_authenticated %}
-                <li id="sm_profile"><a href="{% url 'profile' %}"><img id="sm_profile_img" class="img-circle" src="{{ user.pic.url }}"/>{{ user.username }}</a></li>
+                <li id="sm_profile"><a href="{% url 'profile' %}"><img id="sm_profile_img" class="img-circle" src="http://ec2-54-148-140-204.us-west-2.compute.amazonaws.com/static/img/default.png"/>{{ user.username }}</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
                 <li><a href="{% url 'register' %}">Register</a></li>
