@@ -178,7 +178,7 @@ def home(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserCreationForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             user = form.save()
@@ -303,3 +303,22 @@ def new_body_fat(request):
             member = request.user)
 
     return HttpResponse(content_type='application.json')
+#
+# def member_login(request):
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             username = request.POST["username"]
+#             password = request.POST["password1"]
+#             form.save()
+#             user = authenticate(username=username, password=password)
+#             if user is not None:
+#                 if user.is_active:
+#                     login(request, user)
+#                     return redirect("profile")
+#     else:
+#         form = LoginForm()
+#
+#     return render(request, "registration/login.html", {
+#         'form': form,
+#     })

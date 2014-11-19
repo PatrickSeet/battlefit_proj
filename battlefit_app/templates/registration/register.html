@@ -10,15 +10,15 @@
     <div class="row">
     <div class="col-md-8 col-md-offset-2">
 
-        Register
+        <h2 style="color: #0792b8;">Register</h2>
 
         <form method="post" action="." enctype="multipart/form-data" >
             {% csrf_token %}
 
             <div class="col-lg-7">
-                <img class="img-circle" src="/media/profile_img/default.png" id="upfile1" style="cursor:pointer" />
+                <img class="img-circle" src="/media/profile_img/default.png" id="upfile1" />
                     <label class="form_label"> upload profile photo</label>
-                <input type="file" id="file1" name="file1" style="display:none" />
+                <input type="file" id="file1" name="file1" />
             </div>
 
             <div class="col-lg-7">
