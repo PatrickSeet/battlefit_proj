@@ -1,14 +1,42 @@
 import json
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.sessions import serializers
 from django.http import HttpResponse
 import operator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, render_to_response
 from django.views.decorators.csrf import csrf_exempt
-from battlefit_app.forms import GroupForm, UserCreationForm
+from battlefit_app.forms import GroupForm, UserCreationForm, UserForm, MemberForm
 from battlefit_app.models import Group, Member, Data
 
+
+@login_required
+def validic_sync(request):
+
+    pass
+
+@login_required
+def validic_register(request):
+
+    # query db for the user id
+    # send user id to register.js to generate access_token
+    uid = Member.objects.get(username=request.user)
+    user_info = {}
+    user_info['uid'] = uid.id
+
+    return HttpResponse(json.dumps(user_info), content_type='application.json')
+
+@login_required
+@csrf_exempt
+def validic_save_info(request):
+
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        Member.objects.filter(username=request.user).update(vaccesstoken=data['user']['access_token'])
+        Member.objects.filter(username=request.user).update(vid=data['user']['_id'])
+
+    return HttpResponse("update ok")
 
 @login_required
 def load_group(request):
@@ -68,13 +96,13 @@ def group_overview(member):
                     pass
             score = sum(data_group)/len(data_group)
         group_scores[group] = score
-        print group_scores
+        print "group scores in overview line 71: " + group_scores
     return group_scores
 
 @login_required
 def group(request, group_id):
     group = Group.objects.get(id=group_id)
-    print group
+    print "group in group line 77: {}".format(group)
     data = Data.objects.filter(member = request.user, date__range=[group.start_date, group.end_date])
     member_data = []
     data_group = []
@@ -90,7 +118,8 @@ def group(request, group_id):
                 data_group.append(datum.calories_burned)
             else:
                 pass
-        print data_group
+        print "group data in line 93 {}".format(data_group)
+        #failed because len(data_group) == 0, there are no W gropus in db
         data_w = sum(data_group)/len(data_group)
         score = (goal - data_w) / goal
         scores.append(score)
@@ -155,7 +184,7 @@ def group(request, group_id):
             scores.append(mem_score)
             member_score[member.username] = mem_score
     group_avg = sum(scores)/len(scores)
-    print scores
+    print "scores in group line 159: {}".format(scores)
     sorted_scores = sorted(member_score.items(), key=operator.itemgetter(1))
     sorted_scores.reverse()
     winner = sorted_scores[0]
@@ -172,45 +201,25 @@ def group(request, group_id):
 def index(request):
     return render(request, "landing.html")
 
-@login_required
 def home(request):
     return render(request, "home.html")
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST, request.FILES)
+        form = UserForm(request.POST, request.FILES)
         if form.is_valid():
+            username = request.POST["username"]
+            password = request.POST["password1"]
             form.save()
-            user = form.save()
-            # user.email_user("Welcome!", "Thank you for signing up for our website.")
-            # text_content = 'Thank you for signing up for our website, {}'.format(user.username)
-            # html_content = '<h2>Thanks {} {}for signing up!</h2> <div>I hope you enjoy using our site</div><div>Signed up on {}'.format(
-            #     user.first_name, user.last_name, user.date_joined)
-            # msg = EmailMultiAlternatives("Welcome!", text_content, settings.DEFAULT_FROM_EMAIL, [user.email])
-            # msg.attach_alternative(html_content, "text/html")
-            # msg.send()
-            return redirect("/profile")
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect("profile")
     else:
-        form = UserCreationForm()
-
-    return render(request, "registration/register.html", {
-        'form': form,
-    })
-# def register(request):
-#     if request.method == 'POST':
-#         form = EmailUserCreationForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             username = request.POST['username']
-#             password = request.POST['password1']
-#             form.save()
-#             user = authenticate(username=username, password=password)
-#             if user is not None:
-#                 if user.is_active:
-#                     login(request, user)
-#                     return redirect("profile")
-#     else:
-#         form = EmailUserCreationForm()
-#     return render(request, "registration/register.html", {'form': form})
+        form = UserForm(request.POST, request.FILES)
+    data = {'form': form}
+    return render(request, "registration/register.html", data)
 
 
 @login_required
@@ -251,7 +260,7 @@ def user_dashboard(request):
 
     try:
         group_data = group_overview(request.user)
-        print group_data
+        print "group data in user_dashboard: {}".format(group_data)
     except:
         group_data = {}
 
@@ -261,64 +270,3 @@ def user_dashboard(request):
         'body_fat': body_fat,
         'group_data' : group_data
     })
-
-
-@csrf_exempt
-def new_calories_consume(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        for i in data:
-            Data.objects.get_or_create(
-                calories_consumed = i['calories_consumed'],
-                date = i['date'],
-                activity_title = i['activity_title'],
-                activity_type = i['activity_type'],
-                member = request.user
-            )
-    return HttpResponse(content_type='application.json')
-
-
-@csrf_exempt
-def new_calories_burned(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        for i in data:
-            Data.objects.get_or_create(
-                calories_burned = i['calories_burned'],
-                date = i['date'],
-                activity_title = i['activity_title'],
-                activity_type = i['activity_type'],
-                member = request.user
-            )
-    return HttpResponse(content_type='application.json')
-
-@csrf_exempt
-def new_body_fat(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        Data.objects.get_or_create(
-            date = "2014-10-31T11:54:33+00:00",
-            activity_type = "fitness",
-            body_fat = data,
-            member = request.user)
-
-    return HttpResponse(content_type='application.json')
-#
-# def member_login(request):
-#     if request.method == 'POST':
-#         form = LoginForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             username = request.POST["username"]
-#             password = request.POST["password1"]
-#             form.save()
-#             user = authenticate(username=username, password=password)
-#             if user is not None:
-#                 if user.is_active:
-#                     login(request, user)
-#                     return redirect("profile")
-#     else:
-#         form = LoginForm()
-#
-#     return render(request, "registration/login.html", {
-#         'form': form,
-#     })

@@ -6,7 +6,7 @@ class Member(AbstractUser):
     FEMALE = 'F'
     MALE = 'M'
     score = models.IntegerField(null=True, blank=True)
-    pic = models.ImageField(null=True, blank=True, upload_to='profile_img', default='profile_img/default.png')
+    image = models.ImageField(null=True, upload_to='profile_img', default='profile_img/default.png')
     weight = models.FloatField(null=True, blank=True)
     height = models.IntegerField(null=True, blank=True)
     GENDER_CHOICES = (
@@ -17,6 +17,7 @@ class Member(AbstractUser):
     age = models.IntegerField(null=True, blank=True)
     vid = models.CharField(max_length=100, null=True, blank=True)
     wincount = models.IntegerField(null=True, blank=True)
+    vaccesstoken = models.CharField(max_length=100, null=True, blank=True)
 
     def __unicode__(self):
         return unicode(self.username)

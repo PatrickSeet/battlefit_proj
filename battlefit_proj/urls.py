@@ -11,11 +11,11 @@ urlpatterns = patterns('',
     url(r'^group/(?P<group_id>\w+)/$', 'battlefit_app.views.group', name='group'),
     url(r'^load_group/$', 'battlefit_app.views.load_group', name='load_group'),
     url(r'^user_dashboard/$', 'battlefit_app.views.user_dashboard', name='user_dashboard'),
-    # ajax
-    url(r'^new_calories_consume/$', 'battlefit_app.views.new_calories_consume', name='new_calories_consume'),
-    url(r'^new_calories_burned/$', 'battlefit_app.views.new_calories_burned', name='new_calories_burned'),
-    url(r'^new_body_fat/$', 'battlefit_app.views.new_body_fat', name='new_body_fat'),
+    url(r'^validic_register/$', 'battlefit_app.views.validic_register', name='validic_register'),
+    url(r'^validic_save_info/$', 'battlefit_app.views.validic_save_info', name='validic_save_info'),
+    url(r'^validic_sync/$', 'battlefit_app.views.validic_sync', name='validic_sync'),
 
+    # ajax
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'battlefit_app.views.index', name='index'),
     url(r'^home/$', 'battlefit_app.views.home', name='home'),
