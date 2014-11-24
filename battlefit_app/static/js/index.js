@@ -5,13 +5,17 @@ $(document).ready(function () {
         $("#file1").trigger('click');
     });
 
+    // hehe
     var jeffEndPoint = "https://api.validic.com/v1/fitness.json?authentication_token=5n7T9btWJ_kCbDxA9jsc";
     var patEndPoint = "https://api.validic.com/v1/routine.json?authentication_token=yrgxx6nKXmpR2jmPyHiQ";
     var julEndPoint = "https://api.validic.com/v1/routine.json?authentication_token=qLm2maaWbR5ghzMtUxFz";
 
 
     $('.import_test').on('click', function() {
-
+        // I think from the demo we saw that you need to clear out $('#calories_burned) everytime this button is clicked
+        // before adding more results
+        
+        // This ajax block could also be put into a function that you call with each person's name and endpoint for reusability
         $.ajax({
             url: patEndPoint,
             type: "GET",
