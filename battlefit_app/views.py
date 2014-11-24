@@ -22,17 +22,23 @@ def validic_register(request):
     # query db for the user id
     # send user id to register.js to generate access_token
     uid = Member.objects.get(username=request.user)
+    # can just combine this into
+    user_info = {
+        'uid': uid.id    
+    }
     user_info = {}
     user_info['uid'] = uid.id
 
     return HttpResponse(json.dumps(user_info), content_type='application.json')
 
 @login_required
+# don't use csrf_exempt!
 @csrf_exempt
 def validic_save_info(request):
 
     if request.method == 'POST':
         data = json.loads(request.body)
+        # Could make these just one update
         Member.objects.filter(username=request.user).update(vaccesstoken=data['user']['access_token'])
         Member.objects.filter(username=request.user).update(vid=data['user']['_id'])
 
@@ -61,7 +67,9 @@ def create_group(request):
     return render(request, "create_group.html", data)
 
 def group_overview(member):
+    # can't we just do member.groups?
     groups = Group.objects.filter(member=member)
+    # isn't member the same as member here?
     member = Member.objects.get(id=member.id)
     bmr = member.get_bmr()
     group_scores = {}
@@ -70,6 +78,8 @@ def group_overview(member):
         data_group = []
         group_scores = {}
         data = Data.objects.filter(member = member, date__range=[group.start_date, group.end_date])
+        # Looks like this isn't being used right now, but could be DRYed up quite a bit
+        # Most of the code for a 'W' category vs. 'H' vs. other looks the same
         if group.category == 'W':
             for datum in data:
                 if datum.calories_burned is not None:
@@ -101,6 +111,7 @@ def group_overview(member):
 
 @login_required
 def group(request, group_id):
+    # will error if group doesn't exist
     group = Group.objects.get(id=group_id)
     print "group in group line 77: {}".format(group)
     data = Data.objects.filter(member = request.user, date__range=[group.start_date, group.end_date])
@@ -112,6 +123,7 @@ def group(request, group_id):
     bmr = member.get_bmr()
     goal = (group.goal / 100) * bmr
 
+    # DRY this up!
     if group.category == 'W':
         for datum in data:
             if datum.calories_burned is not None:
@@ -235,6 +247,7 @@ def user_dashboard(request):
     calories_burned = []
     body_fat = []
     consume_data = Data.objects.filter(member=request.user, activity_type="meal")
+    # more DRYing up needed here
     for i in consume_data:
         calories_consume.append({
             'calories_consumed': i.calories_consumed,
