@@ -1,3 +1,5 @@
+# Could have a better name then battlefit_app for your django application
+
 # Create your models here.
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -16,6 +18,7 @@ class Member(AbstractUser):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
     age = models.IntegerField(null=True, blank=True)
     vid = models.CharField(max_length=100, null=True, blank=True)
+    # should wins be a separate model?
     wincount = models.IntegerField(null=True, blank=True)
     vaccesstoken = models.CharField(max_length=100, null=True, blank=True)
 
@@ -49,7 +52,8 @@ class Group(models.Model):
     def __unicode__(self):
         return u"{}".format(self.name)
 
-
+# Should this be a many to many through table for the member field on Group?
+# This creates some redundant data
 class GroupAdmin(models.Model):
     admin = models.BooleanField(default=False)
     user = models.ForeignKey(Member, related_name='administrator')
@@ -64,6 +68,7 @@ class Data(models.Model):
     calories_burned = models.FloatField(null=True, blank=True)
     date = models.CharField(max_length=200)
     body_fat = models.FloatField(null=True, blank=True)
+    # should this be a separate model or model choice field?
     activity_type = models.CharField(max_length=200)
     activity_title = models.CharField(max_length=200)
     member = models.ForeignKey(Member, related_name='data')
