@@ -30,7 +30,7 @@ class UserForm(UserCreationForm):
             code='duplicate_username',
         )
 
-
+# should this be a ModelForm?
 class GroupForm(forms.Form):
     WEIGHT_LOSS = 'W'
     HEALTH = 'H'
